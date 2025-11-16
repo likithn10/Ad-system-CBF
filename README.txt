@@ -51,6 +51,20 @@ http://127.0.0.1:5000/
 
 📸 Screenshots 
 You can include screenshots here:
+## 📸 Screenshots
+
+### 🖼️ Screenshot 1  
+![Screenshot 1](screenshorts/Screenshot%202025-11-16%20115621.png)
+
+### 🖼️ Screenshot 2  
+![Screenshot 2](screenshorts/Screenshot%202025-11-16%20115759.png)
+
+### 🖼️ Screenshot 3  
+![Screenshot 3](screenshorts/Screenshot%202025-11-16%20115812.png)
+
+### 🖼️ Screenshot 4  
+![Screenshot 4](screenshorts/Screenshot%202025-11-16%20115823.png)
+
 
 
 📊 How the Recommendation Works
