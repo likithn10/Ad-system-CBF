@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4" style="max-width: 760px;">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">My Profile</h3>
+      <div>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('index') }}">Home</a>
+        <a class="btn btn-outline-danger btn-sm" href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-4 text-center mb-3">
+              <img src="{{ (profile.photo_url or 'https://via.placeholder.com/160') }}" alt="Profile Photo" class="rounded" style="width:160px;height:160px;object-fit:cover;">
+            </div>
+            <div class="col-md-8">
+              <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input name="full_name" class="form-control" value="{{ profile.full_name or '' }}">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" value="{{ profile.email or '' }}">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select name="gender" class="form-select">
+                  <option value="" {% if not profile.gender %}selected{% endif %}>Select</option>
+                  <option value="male" {% if profile.gender=='male' %}selected{% endif %}>Male</option>
+                  <option value="female" {% if profile.gender=='female' %}selected{% endif %}>Female</option>
+                  <option value="other" {% if profile.gender=='other' %}selected{% endif %}>Other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Date of Birth</label>
+                <input name="dob" type="date" class="form-control" value="{{ profile.dob or '' }}">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Upload New Profile Photo</label>
+            <input type="file" name="photo_file" accept=".png,.jpg,.jpeg,.gif,.webp" class="form-control">
+            <div class="form-text">Allowed: png, jpg, jpeg, gif, webp. Max 5 MB.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input name="phone" class="form-control" value="{{ profile.phone or '' }}">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea name="address" class="form-control" rows="3">{{ profile.address or '' }}</textarea>
+          </div>
+
+          <button class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
