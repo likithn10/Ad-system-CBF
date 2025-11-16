@@ -12,7 +12,3 @@
    pip install -r requirements.txt
 6) Run:
    python app.py
-7) Open:
-   http://127.0.0.1:5000/login
-   Admin login: go to http://127.0.0.1:5000/admin-login
-   Admin creds: admin / admin123
